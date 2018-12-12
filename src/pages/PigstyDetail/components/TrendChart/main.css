@@ -1,0 +1,26 @@
+.t1{
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 40px;
+  text-align: center;
+  overflow: hidden;
+
+}
+.t1 .t2{
+  width: 25%;
+  display: inline-block;
+  height: 36px;
+  border: 1px solid #e0e0e0;
+  float: left;
+  line-height: 36px;
+}
+
+
+
+
+
+
+
+
+
+

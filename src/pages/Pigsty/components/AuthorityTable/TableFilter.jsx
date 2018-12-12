@@ -1,46 +1,18 @@
 import React, { Component } from 'react';
-import {Dialog, Button } from '@icedesign/base';
-import AddPig from '../../../AddPig';
-import './main.css';
+import { Button, Input, Select } from '@icedesign/base';
+
 export default class TableFilter extends Component {
   static displayName = 'TableFilter';
 
   constructor(props) {
     super(props);
-    this.state = {
-      dialog : false
-    };
+    this.state = {};
   }
 
-  addpig = () => {
-    this.setState({
-      dialog : true
-    })
-  }
-  hideDialog = () => {
-    this.setState({
-      dialog: false,
-    });
-  };
   render() {
     return (
       <div style={styles.tableFilter}>
-        <div style={styles.title}>后备公猪区</div>
-        <Button type="primary" style={styles.submitButton} onClick = {() => {this.addpig()}}>
-          新增公猪
-        </Button>
-        <Dialog
-          className="simple-form-dialog"
-          style={{width: '1000px'}}
-          autoFocus={true}
-          footerAlign="center"
-          title="新增公猪"
-          onClose={this.hideDialog}
-          isFullScreen
-          visible={this.state.dialog}
-        >
-          <AddPig/>
-        </Dialog>
+        <div style={styles.title}>猪舍记录</div>
       </div>
     );
   }

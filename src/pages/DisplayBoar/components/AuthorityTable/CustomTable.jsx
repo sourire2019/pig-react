@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Balloon, Icon } from '@icedesign/base';
+import { Table, Dialog, Button } from '@icedesign/base';
+import IceIcon from '@icedesign/icon';
 import Operation from '../../../../api/api';
 
-const {displaypig} = Operation;
+const QRCode = require('qrcode.react');
+
+const { displaypig } = Operation;
 
 
 export default class Home extends Component {
@@ -11,25 +14,38 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 1,
       dataSource: [],
+      dialog: false,
+      earId: '',
     };
   }
-  componentWillMount = async() =>{
-    let result = await displaypig();
+  componentWillMount = async () => {
+    const result = await displaypig();
     this.setState({
-      dataSource : result
-    })
+      dataSource: result,
+    });
   }
-
-  renderOper = () => {
+  printf = (index) => {
+    const id = this.state.dataSource[index].earId.toString();
+    this.setState({ dialog: true, earId: id });
+  }
+  renderOper = (record, index) => {
     return (
       <div style={styles.oper}>
-        <Icon type="edit" size="small" style={styles.editIcon} />
+        <IceIcon size="small" type="eye" style={styles.editIcon} onClick={() => { this.printf(index); }} />
       </div>
     );
   };
-
+  hideDialog = () => {
+    this.setState({
+      dialog: false,
+    });
+  };
+  download = () => {
+    const canvas = document.querySelector('.HpQrcode > canvas');
+    this.downloadRef.href = canvas.toDataURL();
+    this.downloadRef.download = `${this.state.earId}.png`;
+  }
   render() {
     const { dataSource } = this.state;
     return (
@@ -53,11 +69,35 @@ export default class Home extends Component {
           <Table.Column width={200} title="操作" dataIndex="operation" />
           <Table.Column
             width={100}
-            title="编辑/删除"
+            title="查看二维码"
             cell={this.renderOper}
             align="center"
           />
         </Table>
+        <Dialog
+          className="simple-form-dialog"
+          style={{ width: '200px' }}
+          autoFocus
+          footerAlign="center"
+          title="查看二维码"
+          onClose={this.hideDialog}
+          isFullScreen
+          visible={this.state.dialog}
+        >
+          <div className="HpQrcode">
+            <QRCode size={150} value={this.state.earId} />
+          </div>
+          <div style={{ marginTop: '20px' }}>
+            <Button type="primary" onClick={this.download}>
+              <a ref={(ref) => { this.downloadRef = ref; }}>
+                下载
+              </a>
+            </Button>
+            <Button onClick={this.hideDialog}>
+              关闭
+            </Button>
+          </div>
+        </Dialog>
       </div>
     );
   }

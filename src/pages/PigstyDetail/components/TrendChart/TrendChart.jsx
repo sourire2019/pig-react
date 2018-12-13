@@ -71,9 +71,9 @@ export default class TrendChart extends Component {
       <IceContainer style={styles.container}>
         <div className="t1" style={{ marginTop: '40px' }} id="daohang2">
           <a onClick={() => { this.changetab(0); }}><span className="t2" style={{ background: '#efefef', fontWeight: 'bolder' }} ref={el => this.Boar = el} >公猪列表</span></a>
-          <a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.Sows = el}>母猪列表</span></a>
+          {/*<a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.Sows = el}>母猪列表</span></a>*/}
           <a onClick={() => { this.changetab(2); }}><span className="t2" ref={el => this.environmental = el}>环境信息</span></a>
-          <a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.callback = el}>返回上一层</span></a>
+          {/*<a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.callback = el}>返回上一层</span></a>*/}
         </div>
         {
           this.state.show === '' ? ('') : (this.state.show)

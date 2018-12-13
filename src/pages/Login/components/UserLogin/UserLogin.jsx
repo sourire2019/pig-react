@@ -11,23 +11,21 @@ import cookie from 'react-cookies';
 import './UserLogin.scss';
 import Operations from '../../../../api/api';
 
-
 const { login } = Operations;
 const { Row, Col } = Grid;
-
 // 寻找背景图片可以从 https://unsplash.com/ 寻找
-const backgroundImage = require('./images/TB1zsNhXTtYBeNjy1XdXXXXyVXa-2252-1500.png');
+const backgroundImage = require('./images/pig.jpg');
 
 export default class UserLogin extends Component {
   static displayName = 'UserLogin';
-
   static propTypes = {};
-
   static defaultProps = {};
-
   constructor(props) {
     super(props);
     this.state = {
+      account: 'Admin',
+      password: 'admin',
+      part: 'enterprise',
       value: {
         account: undefined,
         password: undefined,
@@ -35,16 +33,14 @@ export default class UserLogin extends Component {
       },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.part = this.part.bind(this);
+    this.account = this.account.bind(this);
+    this.password = this.password.bind(this);
   }
 
-  formChange = (value) => {
-    this.setState({
-      value,
-    });
-  };
 
   handleSubmit = async () => {
-    const result = await login(this.state.value);
+    const result = await login(this.state);
     if (result.message === 'success') {
       cookie.save('status', '1');
       window.location.href = `${window.location.origin}/#/`;
@@ -53,7 +49,21 @@ export default class UserLogin extends Component {
       cookie.save('status', '0');
     }
   };
-
+  part= (e) => {
+    this.setState({
+      part: e,
+    });
+  }
+  account= (e) => {
+    this.setState({
+      account: e,
+    });
+  }
+  password= (e) => {
+    this.setState({
+      password: e,
+    });
+  }
   render() {
     return (
       <div style={styles.userLogin} className="user-login">
@@ -65,13 +75,11 @@ export default class UserLogin extends Component {
         />
         <div style={styles.contentWrapper} className="content-wrapper">
           <h2 style={styles.slogan} className="slogan">
-            欢迎进入 <br /> 管理系统
+            欢迎进入 <br /> 智能养猪管理系统
           </h2>
           <div style={styles.formContainer}>
             <h4 style={styles.formTitle}>登录</h4>
             <IceFormBinderWrapper
-              value={this.state.value}
-              onChange={this.formChange}
               ref="form"
             >
               <div style={styles.formItems}>
@@ -83,7 +91,7 @@ export default class UserLogin extends Component {
                       style={styles.inputIcon}
                     />
                     <IceFormBinder name="part" required message="必填">
-                      <Input maxLength={20} placeholder="猪场企业" />
+                      <Input maxLength={20} placeholder="猪场企业" value={this.state.part} onChange={this.part} />
                     </IceFormBinder>
                   </Col>
                   <Col>
@@ -98,7 +106,7 @@ export default class UserLogin extends Component {
                       style={styles.inputIcon}
                     />
                     <IceFormBinder name="account" required message="必填">
-                      <Input maxLength={20} placeholder="账号" />
+                      <Input maxLength={20} placeholder="账号" value={this.state.account} onChange={this.account} />
                     </IceFormBinder>
                   </Col>
                   <Col>
@@ -114,7 +122,7 @@ export default class UserLogin extends Component {
                       style={styles.inputIcon}
                     />
                     <IceFormBinder name="password" required message="必填">
-                      <Input htmlType="password" placeholder="密码" />
+                      <Input htmlType="password" placeholder="密码" value={this.state.password} onChange={this.password} />
                     </IceFormBinder>
                   </Col>
                   <Col>
@@ -153,6 +161,7 @@ const styles = {
     right: 0,
     bottom: 0,
     backgroundSize: 'cover',
+    opacity: 0.4,
   },
   formContainer: {
     display: 'flex',

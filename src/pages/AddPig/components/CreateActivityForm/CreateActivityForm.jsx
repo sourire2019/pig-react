@@ -12,16 +12,11 @@ import {
 } from '@icedesign/base';
 import Operation from '../../../../api/api';
 
-
 const { addPig } = Operation;
 const { Row, Col } = Grid;
-
-
 export default class CreateActivityForm extends Component {
   static displayName = 'CreateActivityForm';
-
   static defaultProps = {};
-
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +27,6 @@ export default class CreateActivityForm extends Component {
         ringNumber: '',
         MatingWeek: '',
         remarks: '',
-        operation: '',
       },
     };
   }
@@ -52,7 +46,6 @@ export default class CreateActivityForm extends Component {
         ringNumber: '',
         MatingWeek: '',
         remarks: '',
-        operation: '',
       },
     });
   };
@@ -164,21 +157,6 @@ export default class CreateActivityForm extends Component {
                     <Input style={{ width: '100%' }} />
                   </IceFormBinder>
                   <IceFormError name="remarks" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  操作：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder
-                    name="operation"
-                    required
-                    message="操作必须填写"
-                  >
-                    <Input style={{ width: '100%' }} />
-                  </IceFormBinder>
-                  <IceFormError name="operation" />
                 </Col>
               </Row>
               <Row style={styles.btns}>

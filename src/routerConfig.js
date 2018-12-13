@@ -9,14 +9,10 @@ import Check from './pages/Check';
 import Detail from './pages/Detail';
 import Pigsty from './pages/Pigsty';
 import PigstyDetail from './pages/PigstyDetail';
+import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
 const routerConfig = [
-  {
-    path: '/manage/company',
-    layout: BasicLayout,
-    component: DisplayBoar,
-  },
   {
     path: '/login',
     component: Login,
@@ -45,6 +41,11 @@ const routerConfig = [
     path: '/quickchech/pigsty/detail',
     layout: BasicLayout,
     component: PigstyDetail,
+  },
+  {
+    path: '/manage/company',
+    layout: BasicLayout,
+    component: Home,
   },
   {
     path: '*',

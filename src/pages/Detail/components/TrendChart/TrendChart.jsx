@@ -103,7 +103,7 @@ export default class TrendChart extends Component {
           <a onClick={() => { this.changetab(0); }}><span className="t2" style={{ background: '#efefef', fontWeight: 'bolder' }} ref={el => this.show = el} >基本信息</span></a>
           <a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.flow = el}>健康信息</span></a>
           <a onClick={() => { this.changetab(2); }}><span className="t2" ref={el => this.environmental = el}>环境信息</span></a>
-          <a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.service = el}>返回上一层</span></a>
+          {/*<a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.service = el}>返回上一层</span></a>*/}
         </div>
         {this.state.show}
       </IceContainer>

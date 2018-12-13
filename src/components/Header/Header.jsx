@@ -6,18 +6,23 @@ import Menu from '@icedesign/menu';
 import FoundationSymbol from 'foundation-symbol';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
+import cookie from 'react-cookies';
 import { headerMenuConfig } from '../../menuConfig';
 import Logo from '../Logo';
-import cookie from 'react-cookies';
 
 export default class Header extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      account: cookie.load('account'),
+    };
+  }
   close = () => {
-    cookie.save("status",0);
+    cookie.save('status', 0);
     window.location.reload();
   }
   render() {
     const { width, theme, isMobile, className, style } = this.props;
-
     return (
       <Layout.Header
         theme={theme}
@@ -81,12 +86,13 @@ export default class Header extends PureComponent {
                 <IceImg
                   height={40}
                   width={40}
-                  src={require('./images/TB1L6tBXQyWBuNjy0FpXXassXXa-80-80.png')}
+                  src={require('./images/pig.png')}
                   className="user-avatar"
+                  style={{ background: '#fff' }}
                 />
                 <div className="user-profile">
                   <span className="user-name" style={{ fontSize: '13px' }}>
-                    1
+                    {this.state.account}
                   </span>
                   <br />
                   <span
@@ -107,19 +113,19 @@ export default class Header extends PureComponent {
             className="user-profile-menu"
           >
             <ul>
-              {/*<li className="user-profile-menu-item">*/}
-                {/*<Link to="/">*/}
-                  {/*<FoundationSymbol type="person" size="small" />*/}
-                  {/*我的主页*/}
-                {/*</Link>*/}
-              {/*</li>*/}
-              {/*<li className="user-profile-menu-item">*/}
-                {/*<Link to="/">*/}
-                  {/*<FoundationSymbol type="repair" size="small" />*/}
-                  {/*设置*/}
-                {/*</Link>*/}
-              {/*</li>*/}
-              <li className="user-profile-menu-item" onClick={() => {this.close()}}>
+              {/* <li className="user-profile-menu-item"> */}
+              {/* <Link to="/"> */}
+              {/* <FoundationSymbol type="person" size="small" /> */}
+              {/* 我的主页 */}
+              {/* </Link> */}
+              {/* </li> */}
+              {/* <li className="user-profile-menu-item"> */}
+              {/* <Link to="/"> */}
+              {/* <FoundationSymbol type="repair" size="small" /> */}
+              {/* 设置 */}
+              {/* </Link> */}
+              {/* </li> */}
+              <li className="user-profile-menu-item" onClick={() => { this.close(); }}>
                 <Link to="/">
                   <FoundationSymbol type="compass" size="small" />
                   退出

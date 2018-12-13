@@ -25,10 +25,9 @@ const headerMenuConfig = [
 
 const asideMenuConfig = [
   {
-    name: '生产任务',
-    path: '/produce',
+    name: '总览',
+    path: '/manage/company',
     icon: 'home',
-    children: [{ name: '后备公猪区', path: '/produce/show' }],
   },
   {
     name: '快查中心',
@@ -39,7 +38,12 @@ const asideMenuConfig = [
       { name: '猪舍记录', path: '/quickchech/pigsty' },
     ],
   },
-
+  {
+    name: '生产任务',
+    path: '/produce',
+    icon: 'task',
+    children: [{ name: '后备公猪区', path: '/produce/show' }],
+  },
 ];
 
 export { headerMenuConfig, asideMenuConfig };

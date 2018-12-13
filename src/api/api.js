@@ -54,13 +54,14 @@ import cookie from 'react-cookies';
 // };
 
 const login = (value) => {
-  if (value.part == 1 && value.account == 2 && value.password == 3) {
-    return ({
-      message: 'success',
-    });
-  }
+  // if (value.part == 1 && value.account == 2 && value.password == 3) {
+  //   return ({
+  //     message: 'success',
+  //   });
+  // }
+  cookie.save('account', value.account);
   return ({
-    message: 'error',
+    message: 'success',
   });
 };
 

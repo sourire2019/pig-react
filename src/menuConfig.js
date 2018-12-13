@@ -1,7 +1,6 @@
 // 菜单配置
 // headerMenuConfig：头部导航配置
 // asideMenuConfig：侧边导航配置
-
 const headerMenuConfig = [
   //   {
   //     name: '首页',
@@ -34,10 +33,10 @@ const asideMenuConfig = [
   {
     name: '快查中心',
     path: '/quickchech',
-    icon: 'home',
+    icon: 'search',
     children: [
       { name: '公猪记录卡', path: '/quickchech/show' },
-      { name : '猪舍记录', path: '/quickchech/pigsty' },
+      { name: '猪舍记录', path: '/quickchech/pigsty' },
     ],
   },
 

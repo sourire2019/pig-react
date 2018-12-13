@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Table, } from '@icedesign/base';
-import Operation from '../../../../api/api';
+import { Table } from '@icedesign/base';
 import IceIcon from '@icedesign/icon';
-const  {checkSelect} = Operation;
+import Operation from '../../../../api/api';
+
+const { checkSelect } = Operation;
 
 export default class Home extends Component {
   static displayName = 'Home';
@@ -13,20 +14,20 @@ export default class Home extends Component {
       dataSource: [],
     };
   }
-  componentWillMount = async() =>{
-    let result = await checkSelect();
+  componentWillMount = async () => {
+    const result = await checkSelect();
     this.setState({
-      dataSource : result,
-    })
+      dataSource: result,
+    });
   }
   see = (index) => {
-    let id = this.state.dataSource[index].earId.toString();
-    window.location.href = window.location.origin + '#/quickchech/show/detail?earId=' + id;
+    const id = this.state.dataSource[index].earId.toString();
+    window.location.href = `${window.location.origin}#/quickchech/show/detail?earId=${id}`;
   }
   renderOper = (record, index) => {
     return (
       <div style={styles.oper}>
-        <IceIcon size="small" type="eye" style={styles.editIcon} onClick = {() => {this.see(index)}}/>
+        <IceIcon size="small" type="eye" style={styles.editIcon} onClick={() => { this.see(index); }} />
       </div>
     );
   };
@@ -69,7 +70,7 @@ export default class Home extends Component {
             width={100}
             title="目前状态"
             dataIndex="status"
-            cell = {row => (row? (row) : ("正常"))}
+            cell={row => (row || ('正常'))}
             align="center"
           />
           <Table.Column

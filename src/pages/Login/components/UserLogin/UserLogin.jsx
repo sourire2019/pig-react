@@ -7,10 +7,12 @@ import {
   FormError as IceFormError,
 } from '@icedesign/form-binder';
 import IceIcon from '@icedesign/icon';
+import cookie from 'react-cookies';
 import './UserLogin.scss';
-import  Operations  from '../../../../api/api';
-import  cookie from 'react-cookies';
-const {login} = Operations;
+import Operations from '../../../../api/api';
+
+
+const { login } = Operations;
 const { Row, Col } = Grid;
 
 // 寻找背景图片可以从 https://unsplash.com/ 寻找
@@ -29,7 +31,7 @@ export default class UserLogin extends Component {
       value: {
         account: undefined,
         password: undefined,
-        part : undefined,
+        part: undefined,
       },
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,13 +43,13 @@ export default class UserLogin extends Component {
     });
   };
 
-  handleSubmit = async(e) => {
-    let result = await login(this.state.value);
-    if (result.message ==="success"){
-      cookie.save("status", '1');
-      window.location.href = window.location.origin + '/#/'
-    } else  {
-      alert("登录失败");
+  handleSubmit = async () => {
+    const result = await login(this.state.value);
+    if (result.message === 'success') {
+      cookie.save('status', '1');
+      window.location.href = `${window.location.origin}/#/`;
+    } else {
+      alert('登录失败');
       cookie.save('status', '0');
     }
   };

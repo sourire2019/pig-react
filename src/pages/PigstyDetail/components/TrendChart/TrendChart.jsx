@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import IceContainer from '@icedesign/container';
 import Boar from './Boar';
 import Sows from './Sows';
+import Environmental from '../../../Detail/components/TrendChart/Environmental';
 
 export default class TrendChart extends Component {
   static displayName = 'TrendChart';
-
   static propTypes = {};
-
   static defaultProps = {};
-
   constructor(props) {
     super(props);
     this.state = {
@@ -21,9 +19,7 @@ export default class TrendChart extends Component {
   componentWillMount = async () => {
 
   };
-  componentWillReceiveProps(nextProps) {
-    
-  }
+
   clearColor = () => {
     this.Boar.style.background = '';
     this.Boar.style.fontWeight = '';
@@ -58,7 +54,7 @@ export default class TrendChart extends Component {
         this.environmental.style.fontWeight = 'bolder',
         this.environmental.style.color = 'black',
         this.setState({
-          show: '',
+          show: <Environmental pigstyId={this.state.id} />,
         })
       ); break;
       case 3: (

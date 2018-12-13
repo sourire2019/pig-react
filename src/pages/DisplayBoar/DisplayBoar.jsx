@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import AuthorityTable from './components/AuthorityTable';
 import cookie from 'react-cookies';
+import AuthorityTable from './components/AuthorityTable';
+
+
 export default class DisplayBoar extends Component {
   static displayName = 'DisplayBoar';
 
@@ -8,11 +10,11 @@ export default class DisplayBoar extends Component {
     super(props);
     this.state = {};
   }
-  componentWillMount () {
-    let result = cookie.load("status");
+  componentWillMount() {
+    const result = cookie.load('status');
 
-    if(result != 1){
-      window.location.href = window.location.origin + '/#/login'
+    if (result != 1) {
+      window.location.href = `${window.location.origin}/#/login`;
     }
   }
   render() {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from '@icedesign/base';
 
-export default class Home extends Component {
-  static displayName = 'Home';
-
+export default class EnvironmentalTable extends Component {
+  static displayName = 'EnvironmentalTable';
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +25,9 @@ export default class Home extends Component {
           className="custom-table"
         >
           <Table.Column width={100} title="时间" dataIndex="datetime" />
-          <Table.Column width={100} title="体温" dataIndex="count" />
+          <Table.Column width={100} title="二氧化碳(CO2)" dataIndex="CO2" />
+          <Table.Column width={100} title="温度(temperature)" dataIndex="temperature" />
+          <Table.Column width={100} title="湿度(humidity)" dataIndex="humidity" />
         </Table>
       </div>
     );

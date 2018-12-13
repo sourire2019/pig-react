@@ -33,7 +33,8 @@
     "react-download-svg": "0.0.4",
     "react-highcharts": "^16.0.2",
     "react-router-dom": "^4.2.2",
-    "reactstrap": "^6.5.0"
+    "reactstrap": "^6.5.0",
+    "superagent": "^4.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",

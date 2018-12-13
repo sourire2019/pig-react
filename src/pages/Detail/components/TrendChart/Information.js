@@ -2,20 +2,13 @@ import React, { Component } from 'react';
 import IceContainer from '@icedesign/container';
 import {
   FormBinderWrapper as IceFormBinderWrapper,
-  FormBinder as IceFormBinder,
-  FormError as IceFormError,
 } from '@icedesign/form-binder';
 import {
-  Input,
   Grid,
-  Button,
 } from '@icedesign/base';
-import Operation from '../../../../api/api';
 
 
-const {addPig} = Operation;
 const { Row, Col } = Grid;
-
 
 
 export default class CreateActivityForm extends Component {
@@ -26,27 +19,29 @@ export default class CreateActivityForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      earId : props.value.earId || '',
-      breed : props.value.breed || '',
-      column: props.value.column || '',
-      ringNumber: props.value.ringNumber || '',
-      MatingWeek: props.value.MatingWeek || '',
-      remarks: props.value.remarks || '',
-      operation: props.value.operation || '',
-      status: props.value.status || '',
+      earId: props.value.earId,
+      breed: props.value.breed,
+      column: props.value.column,
+      ringNumber: props.value.ringNumber,
+      MatingWeek: props.value.MatingWeek,
+      remarks: props.value.remarks,
+      operation: props.value.operation,
+      status: props.value.status,
+      pigstyId: props.value.pigstyId,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      earId : nextProps.value.earId,
-      breed : nextProps.value.breed,
+      earId: nextProps.value.earId,
+      breed: nextProps.value.breed,
       column: nextProps.value.column,
       ringNumber: nextProps.value.ringNumber,
       MatingWeek: nextProps.value.MatingWeek,
       remarks: nextProps.value.remarks,
       operation: nextProps.value.operation,
       status: nextProps.value.status,
+      pigstyId: nextProps.value.pigstyId,
     });
   }
   render() {
@@ -60,7 +55,7 @@ export default class CreateActivityForm extends Component {
                   耳号：
                 </Col>
                 <Col s="12" l="10">
-                    {this.state.earId}
+                  {this.state.earId}
                 </Col>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                   品种：
@@ -111,11 +106,19 @@ export default class CreateActivityForm extends Component {
                   {this.state.remarks}
                 </Col>
               </Row>
+              <Row style={styles.formItem}>
+                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
+                  猪舍：
+                </Col>
+                <Col s="12" l="10">
+                  {this.state.pigstyId}
+                </Col>
+              </Row>
             </div>
           </IceFormBinderWrapper>
         </IceContainer>
       </div>
-  );
+    );
   }
 }
 

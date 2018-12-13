@@ -7,7 +7,6 @@ const { pigsty } = Operation;
 
 export default class Home extends Component {
   static displayName = 'Home';
-
   constructor(props) {
     super(props);
     this.state = {
@@ -44,6 +43,9 @@ export default class Home extends Component {
           <Table.Column width={200} title="编号" dataIndex="id" />
           <Table.Column width={200} title="栋栏" dataIndex="column" />
           <Table.Column width={200} title="圈号" dataIndex="ringNumber" />
+          <Table.Column width={200} title="负责人" dataIndex="person" />
+          <Table.Column width={200} title="数量" dataIndex="num" />
+          <Table.Column width={200} title="类型" dataIndex="type" />
           <Table.Column
             width={100}
             title="操作"

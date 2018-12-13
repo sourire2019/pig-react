@@ -13,9 +13,8 @@ import {
 import Operation from '../../../../api/api';
 
 
-const {addPig} = Operation;
+const { addPig } = Operation;
 const { Row, Col } = Grid;
-
 
 
 export default class CreateActivityForm extends Component {
@@ -27,8 +26,8 @@ export default class CreateActivityForm extends Component {
     super(props);
     this.state = {
       value: {
-        earId : Math.floor(Math.random() * (9999999999999 - 1000000000000 + 1) + 1000000000000),
-        breed : undefined,
+        earId: Math.floor((Math.random() * ((9999999999999 - 1000000000000) + 1)) + 1000000000000),
+        breed: undefined,
         column: '',
         ringNumber: '',
         MatingWeek: '',
@@ -47,8 +46,8 @@ export default class CreateActivityForm extends Component {
   reset = () => {
     this.setState({
       value: {
-        earId : this.state.value.earId,
-        breed : '',
+        earId: this.state.value.earId,
+        breed: '',
         column: '',
         ringNumber: '',
         MatingWeek: '',
@@ -59,12 +58,12 @@ export default class CreateActivityForm extends Component {
   };
 
   submit = () => {
-    this.formRef.validateAll(async(error, value) => {
+    this.formRef.validateAll(async (error, value) => {
       if (error) {
         // 处理表单报错
-      }else  {
-        let result = await addPig(value);
-        if (result.message == 'success'){
+      } else {
+        const result = await addPig(value);
+        if (result.message === 'success') {
           window.location.reload();
         }
       }

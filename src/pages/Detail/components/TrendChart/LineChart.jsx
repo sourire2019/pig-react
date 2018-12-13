@@ -1,81 +1,81 @@
-import React from "react";
+import React from 'react';
 import {
   Chart,
   Geom,
   Axis,
   Tooltip,
-} from "bizcharts";
+} from 'bizcharts';
 import CustomTable from './CustomTable';
 import Operations from '../../../../api/api';
-let {showHealthMin, showHealthHour, showHealthDay} = Operations;
 
+const { showHealthMin, showHealthHour, showHealthDay } = Operations;
 class LineChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data : [],
-      select : 'minute',
+      data: [],
+      select: 'minute',
     };
   }
-  componentWillMount = async() =>{
-    let result = await showHealthMin(this.props.id);
+  componentWillMount = async () => {
+    const result = await showHealthMin(this.props.id);
     this.setState({
-      data : result,
-    })
-    setInterval(() => this.syncData(this.props.id), 10000)
+      data: result,
+    });
+    setInterval(() => this.syncData(this.props.id), 10000);
   }
-  syncData = async(id) => {
-    if(this.state.select == 'minute') {
-      let result = await showHealthMin(id);
+  syncData = async (id) => {
+    if (this.state.select === 'minute') {
+      const result = await showHealthMin(id);
       this.setState({
-        data : result,
-      })
-    }else if (this.state.select == 'hour') {
-      let result = await showHealthHour(id);
+        data: result,
+      });
+    } else if (this.state.select === 'hour') {
+      const result = await showHealthHour(id);
       this.setState({
-        data : result,
-      })
-    }else if(this.state.select == 'day') {
-      let result = await showHealthDay(id);
+        data: result,
+      });
+    } else if (this.state.select === 'day') {
+      const result = await showHealthDay(id);
       this.setState({
-        data : result,
-      })
+        data: result,
+      });
     }
   }
-  select = async() => {
-    if(this.dataselect.value == 'minute') {
-      let result = await showHealthMin(this.props.id);
+  select = async () => {
+    if (this.dataselect.value === 'minute') {
+      const result = await showHealthMin(this.props.id);
       this.setState({
-        select : 'minute',
-        data : result,
-      })
-    }else if (this.dataselect.value == 'hour') {
-      let result = await showHealthHour(this.props.id);
+        select: 'minute',
+        data: result,
+      });
+    } else if (this.dataselect.value === 'hour') {
+      const result = await showHealthHour(this.props.id);
       this.setState({
-        select : 'hour',
-        data : result,
-      })
-    }else if(this.dataselect.value == 'day') {
-      let result = await showHealthDay(this.props.id);
+        select: 'hour',
+        data: result,
+      });
+    } else if (this.dataselect.value === 'day') {
+      const result = await showHealthDay(this.props.id);
       this.setState({
-        select : 'day',
-        data : result,
-      })
+        select: 'day',
+        data: result,
+      });
     }
   }
 
   render() {
     const cols = {
       datetime: {
-        alias: "月份"
+        alias: '月份',
       },
       count: {
-        alias: "体温"
-      }
+        alias: '体温',
+      },
     };
     return (
       <div>
-        <select onClick={this.select} ref={e => this.dataselect =e }>
+        <select onClick={this.select} ref={e => this.dataselect = e}>
           <option value="minute">最近1分钟</option>
           <option value="hour">最近12小时</option>
           <option value="day">最近1天</option>
@@ -86,7 +86,7 @@ class LineChart extends React.Component {
             title={null}
             tickLine={null}
             line={{
-              stroke: "#E6E6E6"
+              stroke: '#E6E6E6',
             }}
           />
           <Axis
@@ -104,13 +104,13 @@ class LineChart extends React.Component {
             color="l (270) 0:rgba(255, 146, 255, 1) .5:rgba(100, 268, 255, 1) 1:rgba(215, 0, 255, 1)"
             shape="smooth"
             style={{
-              shadowColor: "l (270) 0:rgba(21, 146, 255, 0)",
+              shadowColor: 'l (270) 0:rgba(21, 146, 255, 0)',
               shadowBlur: 60,
-              shadowOffsetY: 6
+              shadowOffsetY: 6,
             }}
           />
         </Chart>
-        <CustomTable value = {this.state.data}/>
+        <CustomTable value={this.state.data} />
       </div>
     );
   }

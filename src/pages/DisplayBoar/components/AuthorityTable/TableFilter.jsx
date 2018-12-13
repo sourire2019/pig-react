@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import {Dialog, Button } from '@icedesign/base';
+import { Dialog, Button } from '@icedesign/base';
 import AddPig from '../../../AddPig';
 import './main.css';
+
 export default class TableFilter extends Component {
   static displayName = 'TableFilter';
 
   constructor(props) {
     super(props);
     this.state = {
-      dialog : false
+      dialog: false,
     };
   }
 
   addpig = () => {
     this.setState({
-      dialog : true
-    })
+      dialog: true,
+    });
   }
   hideDialog = () => {
     this.setState({
@@ -26,20 +27,20 @@ export default class TableFilter extends Component {
     return (
       <div style={styles.tableFilter}>
         <div style={styles.title}>后备公猪区</div>
-        <Button type="primary" style={styles.submitButton} onClick = {() => {this.addpig()}}>
+        <Button type="primary" style={styles.submitButton} onClick={() => { this.addpig(); }}>
           新增公猪
         </Button>
         <Dialog
           className="simple-form-dialog"
-          style={{width: '1000px'}}
-          autoFocus={true}
+          style={{ width: '1000px' }}
+          autoFocus
           footerAlign="center"
           title="新增公猪"
           onClose={this.hideDialog}
           isFullScreen
           visible={this.state.dialog}
         >
-          <AddPig/>
+          <AddPig />
         </Dialog>
       </div>
     );

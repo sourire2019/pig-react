@@ -23,12 +23,12 @@ export default class TrendChart extends Component {
   clearColor = () => {
     this.Boar.style.background = '';
     this.Boar.style.fontWeight = '';
-    this.Sows.style.background = '';
-    this.Sows.style.fontWeight = '';
+    // this.Sows.style.background = '';
+    // this.Sows.style.fontWeight = '';
     this.environmental.style.background = '';
     this.environmental.style.fontWeight = '';
-    this.callback.style.background = '';
-    this.callback.style.fontWeight = '';
+    // this.callback.style.background = '';
+    // this.callback.style.fontWeight = '';
   }
   changetab = (id) => {
     this.clearColor();
@@ -42,9 +42,9 @@ export default class TrendChart extends Component {
         })
       ); break;
       case 1: (
-        this.Sows.style.background = '#efefef',
-        this.Sows.style.fontWeight = 'bolder',
-        this.Sows.style.color = 'black',
+        // this.Sows.style.background = '#efefef',
+        // this.Sows.style.fontWeight = 'bolder',
+        // this.Sows.style.color = 'black',
         this.setState({
           show: <Sows />,
         })
@@ -58,9 +58,9 @@ export default class TrendChart extends Component {
         })
       ); break;
       case 3: (
-        this.callback.style.background = '#efefef',
-        this.callback.style.fontWeight = 'bolder',
-        this.callback.style.color = 'black',
+        // this.callback.style.background = '#efefef',
+        // this.callback.style.fontWeight = 'bolder',
+        // this.callback.style.color = 'black',
         window.location.href = `${window.location.origin}#/quickchech/pigsty`
       ); break;
       default: break;
@@ -71,9 +71,9 @@ export default class TrendChart extends Component {
       <IceContainer style={styles.container}>
         <div className="t1" style={{ marginTop: '40px' }} id="daohang2">
           <a onClick={() => { this.changetab(0); }}><span className="t2" style={{ background: '#efefef', fontWeight: 'bolder' }} ref={el => this.Boar = el} >公猪列表</span></a>
-          {/*<a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.Sows = el}>母猪列表</span></a>*/}
+          {/* <a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.Sows = el}>母猪列表</span></a> */}
           <a onClick={() => { this.changetab(2); }}><span className="t2" ref={el => this.environmental = el}>环境信息</span></a>
-          {/*<a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.callback = el}>返回上一层</span></a>*/}
+          {/* <a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.callback = el}>返回上一层</span></a> */}
         </div>
         {
           this.state.show === '' ? ('') : (this.state.show)

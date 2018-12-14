@@ -43,8 +43,8 @@ export default class TrendChart extends Component {
     this.show.style.fontWeight = '';
     this.flow.style.background = '';
     this.flow.style.fontWeight = '';
-    this.service.style.background = '';
-    this.service.style.fontWeight = '';
+    // this.service.style.background = '';
+    // this.service.style.fontWeight = '';
     this.environmental.style.background = '';
     this.environmental.style.fontWeight = '';
   }
@@ -88,9 +88,9 @@ export default class TrendChart extends Component {
         })
       ); break;
       case 3: (
-        this.service.style.background = '#efefef',
-        this.service.style.fontWeight = 'bolder',
-        this.service.style.color = 'black',
+        // this.service.style.background = '#efefef',
+        // this.service.style.fontWeight = 'bolder',
+        // this.service.style.color = 'black',
         window.location.href = `${window.location.origin}#/quickchech/show`
       ); break;
       default: break;

@@ -44,8 +44,9 @@ export default class CreateActivityForm extends Component {
         breed: '',
         column: '',
         ringNumber: '',
-        MatingWeek: '',
+        matingWeek: '',
         remarks: '',
+        pigstyId:'',
       },
     });
   };
@@ -56,7 +57,8 @@ export default class CreateActivityForm extends Component {
         // 处理表单报错
       } else {
         const result = await addPig(value);
-        if (result.message === 'success') {
+        console.log(result)
+        if (result.data.message === 'success') {
           window.location.reload();
         }
       }
@@ -64,8 +66,10 @@ export default class CreateActivityForm extends Component {
   };
 
   render() {
+    
     return (
       <div className="create-activity-form">
+      
         <IceContainer style={styles.container}>
           <IceFormBinderWrapper
             ref={(formRef) => {
@@ -116,6 +120,21 @@ export default class CreateActivityForm extends Component {
               </Row>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
+                  猪舍号：
+                </Col>
+                <Col s="12" l="10">
+                  <IceFormBinder
+                    name="pigstyId"
+                    required
+                    message="猪舍号必须填写"
+                  >
+                    <Input style={{ width: '100%' }} />
+                  </IceFormBinder>
+                  <IceFormError name="pigstyId" />
+                </Col>
+              </Row>
+              <Row style={styles.formItem}>
+                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                   圈号：
                 </Col>
                 <Col s="12" l="10">
@@ -135,13 +154,13 @@ export default class CreateActivityForm extends Component {
                 </Col>
                 <Col s="12" l="10">
                   <IceFormBinder
-                    name="MatingWeek"
+                    name="matingWeek"
                     required
                     message="本周配种必须填写"
                   >
                     <Input style={{ width: '100%' }} />
                   </IceFormBinder>
-                  <IceFormError name="MatingWeek" />
+                  <IceFormError name="matingWeek" />
                 </Col>
               </Row>
               <Row style={styles.formItem}>

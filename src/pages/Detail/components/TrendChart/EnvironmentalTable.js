@@ -5,11 +5,13 @@ export default class EnvironmentalTable extends Component {
   static displayName = 'EnvironmentalTable';
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       dataSource: props.value,
     };
   }
   componentWillReceiveProps(nextProps) {
+  
     this.setState({
       dataSource: nextProps.value,
     });

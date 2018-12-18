@@ -14,10 +14,10 @@ export default class Boar extends Component {
     };
   }
 
-  componentWillMount = async () => {
-    const result = await displaypig();
+ 
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      dataSource: result,
+     dataSource : nextProps.value
     });
   }
 
@@ -32,7 +32,7 @@ export default class Boar extends Component {
           <Table.Column width={100} title="耳号" dataIndex="earId" />
           <Table.Column width={100} title="品种" dataIndex="breed" />
           <Table.Column width={100} title="圈号" dataIndex="ringNumber" />
-          <Table.Column width={100} title="本周配种" dataIndex="MatingWeek" />
+          <Table.Column width={100} title="本周配种" dataIndex="matingWeek" />
           <Table.Column width={100} title="目前状态" dataIndex="status" cell={row => row?(row) : ("正常")}/>
           <Table.Column width={100} title="栋栏" dataIndex="column" />
           <Table.Column width={100} title="操作" dataIndex="operation" />

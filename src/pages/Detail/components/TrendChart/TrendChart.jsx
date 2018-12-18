@@ -25,6 +25,7 @@ export default class TrendChart extends Component {
   }
   componentWillMount = async () => {
     const showValue = await showDetail(this.state.id);
+    console.log(showValue)
     const { pigstyId } = showValue;
     this.setState({
       showValue,

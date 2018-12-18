@@ -23,7 +23,7 @@ export default class CreateActivityForm extends Component {
       breed: props.value.breed,
       column: props.value.column,
       ringNumber: props.value.ringNumber,
-      MatingWeek: props.value.MatingWeek,
+      matingWeek: props.value.matingWeek,
       remarks: props.value.remarks,
       operation: props.value.operation,
       status: props.value.status,
@@ -37,7 +37,7 @@ export default class CreateActivityForm extends Component {
       breed: nextProps.value.breed,
       column: nextProps.value.column,
       ringNumber: nextProps.value.ringNumber,
-      MatingWeek: nextProps.value.MatingWeek,
+      matingWeek: nextProps.value.matingWeek,
       remarks: nextProps.value.remarks,
       operation: nextProps.value.operation,
       status: nextProps.value.status,
@@ -83,13 +83,13 @@ export default class CreateActivityForm extends Component {
                   本周配种：
                 </Col>
                 <Col s="12" l="10">
-                  {this.state.MatingWeek}
+                  {this.state.matingWeek}
                 </Col>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                   目前状态：
                 </Col>
                 <Col s="12" l="10">
-                  {this.state.status}
+                  {this.state.status == undefined ?('正常') :(this.state.statuss)}
                 </Col>
               </Row>
               <Row style={styles.formItem}>

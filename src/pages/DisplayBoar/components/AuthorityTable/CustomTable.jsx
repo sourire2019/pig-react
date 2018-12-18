@@ -64,7 +64,7 @@ export default class Home extends Component {
           <Table.Column width={100} title="品种" dataIndex="breed" />
           <Table.Column width={100} title="栋栏" dataIndex="column" />
           <Table.Column width={100} title="圈号" dataIndex="ringNumber" />
-          <Table.Column width={200} title="本周配种" dataIndex="MatingWeek" />
+          <Table.Column width={200} title="本周配种" dataIndex="matingWeek" />
           <Table.Column width={200} title="备注" dataIndex="remarks" />
           <Table.Column width={200} title="操作" dataIndex="operation" />
           <Table.Column

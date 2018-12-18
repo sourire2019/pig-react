@@ -8,7 +8,7 @@ import {
 import CustomTable from './CustomTable';
 import Operations from '../../../../api/api';
 
-const { showHealthMin, showHealthHour, showHealthDay } = Operations;
+const { showHealthMin, showHealthHour, showHealthDay ,showHealthMin1} = Operations;
 class LineChart extends React.Component {
   constructor(props) {
     super(props);
@@ -19,8 +19,11 @@ class LineChart extends React.Component {
   }
   componentWillMount = async () => {
     const result = await showHealthMin(this.props.id);
+    const result1 = await showHealthMin1(this.props.id);
+    console.log(result)
+    console.log(result1)
     this.setState({
-      data: result,
+      data: result1,
     });
     setInterval(() => this.syncData(this.props.id), 10000);
   }
@@ -69,7 +72,7 @@ class LineChart extends React.Component {
       datetime: {
         alias: '月份',
       },
-      count: {
+      temperature: {
         alias: '体温',
       },
     };
@@ -90,7 +93,7 @@ class LineChart extends React.Component {
             }}
           />
           <Axis
-            name="count"
+            name="temperature"
             line={false}
             tickLine={null}
             grid={null}
@@ -99,7 +102,7 @@ class LineChart extends React.Component {
           <Tooltip />
           <Geom
             type="line"
-            position="datetime*count"
+            position="datetime*temperature"
             size={1}
             color="l (270) 0:rgba(255, 146, 255, 1) .5:rgba(100, 268, 255, 1) 1:rgba(215, 0, 255, 1)"
             shape="smooth"

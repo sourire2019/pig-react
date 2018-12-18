@@ -7,26 +7,33 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: props.value,
+      dataSource:[],
+      value : {}
     };
   }
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
     this.setState({
       dataSource: nextProps.value,
+      value : {
+        value : [
+          {temperature :Math.floor((Math.random() * ((9999999999999 - 1000000000000) + 1)) + 1000000000000),
+          datetime : '12445'}
+        ]
+        }
     });
   }
-  render() {
-    const { dataSource } = this.state;
+  render() {s
+    console.log(this.state.dataSource)  
     return (
       <div style={styles.tableContainer}>
         <Table
-          dataSource={dataSource}
-          onSort={this.handleSort}
+          dataSource={this.state.value.value}
           hasBorder={false}
           className="custom-table"
         >
           <Table.Column width={100} title="时间" dataIndex="datetime" />
-          <Table.Column width={100} title="体温" dataIndex="count" />
+          <Table.Column width={100} title="体温" dataIndex="temperature" />
         </Table>
       </div>
     );

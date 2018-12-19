@@ -35,7 +35,14 @@ const asideMenuConfig = [
     icon: 'search',
     children: [
       { name: '公猪记录卡', path: '/quickchech/show' },
-      { name: '猪舍记录', path: '/quickchech/pigsty' },
+    ],
+  },
+  {
+    name: '猪场管理',
+    path: '/Piggery',
+    icon: 'search',
+    children: [
+      { name: '猪舍管理', path: '/Piggery/pigsty' },
     ],
   },
   {

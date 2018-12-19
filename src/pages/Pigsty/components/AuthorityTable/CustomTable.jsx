@@ -22,7 +22,7 @@ export default class Home extends Component {
   }
   showpigsty = (index) => {
     const id = this.state.dataSource[index].id.toString();
-    window.location.href = `${window.location.origin}#/quickchech/pigsty/detail?Id=${id}`;
+    window.location.href = `${window.location.origin}#/Piggery/pigsty/detail?Id=${id}`;
   }
   renderOper = (record, index) => {
     return (

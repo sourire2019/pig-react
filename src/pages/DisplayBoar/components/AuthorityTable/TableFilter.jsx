@@ -40,7 +40,7 @@ export default class TableFilter extends Component {
           isFullScreen
           visible={this.state.dialog}
         >
-          <AddPig />
+          <AddPig hideDialog={this.hideDialog} value="12345" />
         </Dialog>
       </div>
     );

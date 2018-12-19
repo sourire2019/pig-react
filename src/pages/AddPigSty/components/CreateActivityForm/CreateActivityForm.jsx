@@ -8,13 +8,11 @@ import {
 import {
   Input,
   Grid,
-  Button, Dialog,
+  Button,
 } from '@icedesign/base';
 import Operation from '../../../../api/api';
 
-import Load from '../../../load';
-
-const { addPig } = Operation;
+const { addPigsty } = Operation;
 const { Row, Col } = Grid;
 export default class CreateActivityForm extends Component {
   static displayName = 'CreateActivityForm';
@@ -22,19 +20,14 @@ export default class CreateActivityForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dialog: false,
       value: {
-        ERC721ID: Math.floor((Math.random() * ((9999999999999 - 1000000000000) + 1)) + 1000000000000),
-        earId: new Date().getTime(),
-        breed: '',
+        pigstyId: Math.floor((Math.random() * ((9999 - 1000) + 1)) + 1000),
         column: '',
         ringNumber: '',
-        MatingWeek: '',
-        remarks: '',
+        person: '',
       },
     };
   }
-
   onFormChange = (value) => {
     this.setState({
       value,
@@ -44,42 +37,24 @@ export default class CreateActivityForm extends Component {
   reset = () => {
     this.setState({
       value: {
-        ERC721ID: this.state.value.ERC721ID,
-        earId: this.state.value.earId,
-        breed: '',
+        pigstyId: this.state.value.pigstyId,
         column: '',
         ringNumber: '',
-        matingWeek: '',
-        remarks: '',
-        pigstyId: '',
+        person: '',
       },
     });
   };
 
   submit = () => {
-    const athis = this;
     this.formRef.validateAll(async (error, value) => {
       if (error) {
         // 处理表单报错
       } else {
-        const result = await addPig(value);
+        const result = await addPigsty(value);
         if (result.data.message === 'success') {
-          athis.setState({
-            dialog: true,
-          });
-          setTimeout(() => {
-            athis.setState({
-              dialog: false,
-            });
-            window.location.reload();
-          }, 5000);
+          window.location.reload();
         }
       }
-    });
-  };
-  hideDialog = () => {
-    this.setState({
-      dialog: false,
     });
   };
   render() {
@@ -97,26 +72,11 @@ export default class CreateActivityForm extends Component {
             <div>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  耳号：
+                  猪舍号：
                 </Col>
 
                 <Col s="12" l="10">
-                  {this.state.value.earId}
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  品种：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder
-                    name="breed"
-                    required
-                    message="品种必须填写"
-                  >
-                    <Input style={{ width: '100%' }} />
-                  </IceFormBinder>
-                  <IceFormError name="breed" />
+                  {this.state.value.pigstyId}
                 </Col>
               </Row>
               <Row style={styles.formItem}>
@@ -136,21 +96,6 @@ export default class CreateActivityForm extends Component {
               </Row>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  猪舍号：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder
-                    name="pigstyId"
-                    required
-                    message="猪舍号必须填写"
-                  >
-                    <Input style={{ width: '100%' }} />
-                  </IceFormBinder>
-                  <IceFormError name="pigstyId" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                   圈号：
                 </Col>
                 <Col s="12" l="10">
@@ -166,31 +111,17 @@ export default class CreateActivityForm extends Component {
               </Row>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  本周配种：
+                  负责人：
                 </Col>
                 <Col s="12" l="10">
                   <IceFormBinder
-                    name="matingWeek"
+                    name="person"
                     required
-                    message="本周配种必须填写"
+                    message="负责人必须填写"
                   >
                     <Input style={{ width: '100%' }} />
                   </IceFormBinder>
-                  <IceFormError name="matingWeek" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  备注：
-                </Col>
-                <Col s="12" l="10">
-                  <IceFormBinder
-                    name="remarks"
-                    message="备注可选"
-                  >
-                    <Input style={{ width: '100%' }} />
-                  </IceFormBinder>
-                  <IceFormError name="remarks" />
+                  <IceFormError name="person" />
                 </Col>
               </Row>
               <Row style={styles.btns}>
@@ -199,7 +130,7 @@ export default class CreateActivityForm extends Component {
                 </Col>
                 <Col s="12" l="10">
                   <Button type="primary" onClick={this.submit}>
-                    确定
+                    保存
                   </Button>
                   <Button style={styles.resetBtn} onClick={this.reset}>
                     重置
@@ -209,17 +140,6 @@ export default class CreateActivityForm extends Component {
             </div>
           </IceFormBinderWrapper>
         </IceContainer>
-        <Dialog
-          className="simple-form-dialog"
-          style={{ width: '100%', padding: 0, height: '100%', opacity: '0.6', background: 'black' }}
-          autoFocus
-          footerAlign="center"
-          onClose={this.hideDialog}
-          isFullScreen
-          visible={this.state.dialog}
-        >
-          <Load />
-        </Dialog>
       </div>
     );
   }

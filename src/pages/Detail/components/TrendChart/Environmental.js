@@ -1,27 +1,17 @@
 import React from 'react';
-import {
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-  Legend,
-} from 'bizcharts';
-import DataSet from '@antv/data-set';
-
 import Operation from '../../../../api/api';
 import EnvironmentalTable from './EnvironmentalTable';
 import './main.css';
 
 const ReactHighcharts = require('react-highcharts');
 
-const { showEnvironmentalMin, showEnvironmentalHour, showEnvironmentalDay } = Operation;
+const { showEnvironmentalMin } = Operation;
 
 class Environmental extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      select: 'minute',
     };
   }
   componentWillMount = async () => {
@@ -32,61 +22,12 @@ class Environmental extends React.Component {
     setInterval(() => this.syncData(this.props.pigstyId), 10000);
   }
   syncData = async (id) => {
-    if (this.state.select === 'minute') {
-      const result = await showEnvironmentalMin(id);
-      this.setState({
-        data: result,
-      });
-    } else if (this.state.select === 'hour') {
-      const result = await showEnvironmentalHour(id);
-      this.setState({
-        data: result,
-      });
-    } else if (this.state.select === 'day') {
-      const result = await showEnvironmentalDay(id);
-      this.setState({
-        data: result,
-      });
-    }
-  }
-  select = async () => {
-    if (this.dataselect.value === 'minute') {
-      const result = await showEnvironmentalMin(this.props.id);
-      this.setState({
-        select: 'minute',
-        data: result,
-      });
-    } else if (this.dataselect.value === 'hour') {
-      const result = await showEnvironmentalHour(this.props.id);
-      this.setState({
-        select: 'hour',
-        data: result,
-      });
-    } else if (this.dataselect.value === 'day') {
-      const result = await showEnvironmentalDay(this.props.id);
-      this.setState({
-        select: 'day',
-        data: result,
-      });
-    }
+    const result = await showEnvironmentalMin(id);
+    this.setState({
+      data: result,
+    });
   }
   render() {
-    const ds = new DataSet();
-    const dv = ds.createView().source(this.state.data);
-    dv.transform({
-      type: 'fold',
-      fields: ['CO2', 'temperature', 'humidity'],
-      // 展开字段集
-      key: 'city',
-      // key字段
-      value: 'temperature', // value字段
-    });
-    const cols = {
-      datetime: {
-        range: [0, 1],
-      },
-    };
-
     const datetime = [],
       humidity = [],
       CO2 = [],
@@ -96,7 +37,7 @@ class Environmental extends React.Component {
       datetime.push(data[i].datetime);
       temperature.push(parseFloat(data[i].temperature));
       humidity.push(parseFloat(data[i].humidity));
-      CO2.push(parseFloat(data[i].CO2));
+      CO2.push(parseFloat(data[i].co2));
     }
     const config = {
       credits: {
@@ -155,12 +96,9 @@ class Environmental extends React.Component {
             <strong>猪舍编号:</strong><span>{this.props.pigstyId}</span>
           </div>
           <div style={{ float: 'right' }}>
-            <select onClick={this.select} ref={e => this.dataselect = e}>
-              <option value="minute">最近1分钟</option>
-              <option value="hour">最近12小时</option>
-              <option value="day">最近1天</option>
-            </select>
+            最近5分钟
           </div>
+
         </div>
         <ReactHighcharts config={config} />
         <EnvironmentalTable value={this.state.data} />

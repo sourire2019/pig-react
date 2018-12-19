@@ -33,12 +33,17 @@ const routerConfig = [
     component: Detail,
   },
   {
-    path: '/quickchech/pigsty',
+    path: '/Piggery/pigsty',
     layout: BasicLayout,
     component: Pigsty,
   },
   {
     path: '/quickchech/pigsty/detail',
+    layout: BasicLayout,
+    component: PigstyDetail,
+  },
+  {
+    path: '/Piggery/pigsty/detail',
     layout: BasicLayout,
     component: PigstyDetail,
   },

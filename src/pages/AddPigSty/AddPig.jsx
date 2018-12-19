@@ -12,7 +12,7 @@ export default class AddPig extends Component {
   render() {
     return (
       <div className="add-pig-page">
-        <CreateActivityForm hideDialog={this.props.hideDialog} />
+        <CreateActivityForm />
       </div>
     );
   }

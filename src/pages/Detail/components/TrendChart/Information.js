@@ -89,16 +89,23 @@ export default class CreateActivityForm extends Component {
                   目前状态：
                 </Col>
                 <Col s="12" l="10">
-                  {this.state.status == undefined ?('正常') :(this.state.statuss)}
+                  {this.state.status == undefined ? ('正常') : (this.state.statuss)}
                 </Col>
               </Row>
               <Row style={styles.formItem}>
+                {/* <Col xxs="6" s="2" l="2" style={styles.formLabel}> */}
+                {/* 操作： */}
+                {/* </Col> */}
+                {/* <Col s="12" l="10"> */}
+                {/* {this.state.operation} */}
+                {/* </Col> */}
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  操作：
+                  猪舍：
                 </Col>
                 <Col s="12" l="10">
-                  {this.state.operation}
+                  {this.state.pigstyId}
                 </Col>
+
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                    备注：
                 </Col>
@@ -106,14 +113,14 @@ export default class CreateActivityForm extends Component {
                   {this.state.remarks}
                 </Col>
               </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  猪舍：
-                </Col>
-                <Col s="12" l="10">
-                  {this.state.pigstyId}
-                </Col>
-              </Row>
+              {/* <Row style={styles.formItem}> */}
+              {/* <Col xxs="6" s="2" l="2" style={styles.formLabel}> */}
+              {/* 猪舍： */}
+              {/* </Col> */}
+              {/* <Col s="12" l="10"> */}
+              {/* {this.state.pigstyId} */}
+              {/* </Col> */}
+              {/* </Row> */}
             </div>
           </IceFormBinderWrapper>
         </IceContainer>

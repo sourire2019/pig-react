@@ -26,7 +26,7 @@ export default class Home extends Component {
     });
   }
   printf = (index) => {
-    const id = this.state.dataSource[index].ERC721ID.toString();
+    const id = this.state.dataSource[index].erc721ID.toString();
     this.setState({ dialog: true, earId: id });
   }
   renderOper = (record, index) => {
@@ -56,7 +56,7 @@ export default class Home extends Component {
           hasBorder={false}
           className="custom-table"
         >
-          <Table.Column width={200} title="ERC721ID" dataIndex="ERC721ID" />
+          <Table.Column width={200} title="ERC721ID" dataIndex="erc721ID" />
           <Table.Column width={200} title="耳号" dataIndex="earId" />
           <Table.Column width={100} title="品种" dataIndex="breed" />
           <Table.Column width={100} title="栋栏" dataIndex="column" />

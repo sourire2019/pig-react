@@ -14,7 +14,7 @@ import Operation from '../../../../api/api';
 
 import Load from '../../../load';
 
-const { addPig } = Operation;
+const { addPig, pigstylist } = Operation;
 const { Row, Col } = Grid;
 export default class CreateActivityForm extends Component {
   static displayName = 'CreateActivityForm';
@@ -23,18 +23,24 @@ export default class CreateActivityForm extends Component {
     super(props);
     this.state = {
       dialog: false,
+      pigstylist: [],
       value: {
         ERC721ID: Math.floor((Math.random() * ((9999999999999 - 1000000000000) + 1)) + 1000000000000),
         earId: new Date().getTime(),
         breed: '',
         column: '',
         ringNumber: '',
-        MatingWeek: '',
+        matingWeek: '',
         remarks: '',
       },
     };
   }
-
+  componentWillMount = async () => {
+    const result = await pigstylist();
+    this.setState({
+      pigstylist: result,
+    });
+  }
   onFormChange = (value) => {
     this.setState({
       value,
@@ -62,8 +68,10 @@ export default class CreateActivityForm extends Component {
       if (error) {
         // 处理表单报错
       } else {
-        const result = await addPig(value);
-        if (result.data.message === 'success') {
+        const fromvalue = value;
+        fromvalue.pigstyId = athis.dataselect.value;
+        const result = await addPig(fromvalue);
+        if (result.message === 'success') {
           athis.setState({
             dialog: true,
           });
@@ -82,6 +90,14 @@ export default class CreateActivityForm extends Component {
       dialog: false,
     });
   };
+  operation = () => {
+    const operation = [];
+    const athis = this;
+    for (let i = 0; i < this.state.pigstylist.length; i++) {
+      operation.push(<option value={athis.state.pigstylist[i]} key={athis.state.pigstylist[i]}>{athis.state.pigstylist[i]}</option>);
+    }
+    return operation;
+  }
   render() {
     return (
       <div className="create-activity-form">
@@ -139,13 +155,9 @@ export default class CreateActivityForm extends Component {
                   猪舍号：
                 </Col>
                 <Col s="12" l="10">
-                  <IceFormBinder
-                    name="pigstyId"
-                    required
-                    message="猪舍号必须填写"
-                  >
-                    <Input style={{ width: '100%' }} />
-                  </IceFormBinder>
+                  <select ref={e => this.dataselect = e}>
+                    {this.operation()}
+                  </select>
                   <IceFormError name="pigstyId" />
                 </Col>
               </Row>

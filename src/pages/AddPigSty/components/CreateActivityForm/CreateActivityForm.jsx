@@ -51,7 +51,8 @@ export default class CreateActivityForm extends Component {
         // 处理表单报错
       } else {
         const result = await addPigsty(value);
-        if (result.data.message === 'success') {
+        console.log(result)
+        if (result.message === 'success') {
           window.location.reload();
         }
       }

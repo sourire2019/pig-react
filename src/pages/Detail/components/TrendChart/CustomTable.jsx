@@ -3,32 +3,22 @@ import { Table } from '@icedesign/base';
 
 export default class Home extends Component {
   static displayName = 'Home';
-
   constructor(props) {
     super(props);
     this.state = {
-      dataSource:[],
-      value : {}
+      dataSource: props.value,
     };
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     this.setState({
       dataSource: nextProps.value,
-      value : {
-        value : [
-          {temperature :Math.floor((Math.random() * ((9999999999999 - 1000000000000) + 1)) + 1000000000000),
-          datetime : '12445'}
-        ]
-        }
     });
   }
-  render() {s
-    console.log(this.state.dataSource)  
+  render() {
     return (
       <div style={styles.tableContainer}>
         <Table
-          dataSource={this.state.value.value}
+          dataSource={this.state.dataSource}
           hasBorder={false}
           className="custom-table"
         >

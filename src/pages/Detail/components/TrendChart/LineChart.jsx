@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-} from 'bizcharts';
 import CustomTable from './CustomTable';
 import Operations from '../../../../api/api';
 
-const { showHealthMin, showHealthHour, showHealthDay ,showHealthMin1} = Operations;
+const ReactHighcharts = require('react-highcharts');
+
+const { showHealthMin, showHealthHour, showHealthDay } = Operations;
 class LineChart extends React.Component {
   constructor(props) {
     super(props);
@@ -19,11 +15,8 @@ class LineChart extends React.Component {
   }
   componentWillMount = async () => {
     const result = await showHealthMin(this.props.id);
-    const result1 = await showHealthMin1(this.props.id);
-    console.log(result)
-    console.log(result1)
     this.setState({
-      data: result1,
+      data: result,
     });
     setInterval(() => this.syncData(this.props.id), 10000);
   }
@@ -68,14 +61,48 @@ class LineChart extends React.Component {
   }
 
   render() {
-    const cols = {
-      datetime: {
-        alias: '月份',
+    const datetime = [],
+      temperature = [];
+    const data = this.state.data;
+    for (let i = 0; i < this.state.data.length; i++) {
+      datetime.push(data[i].datetime);
+      temperature.push(parseFloat(data[i].temperature));
+    }
+    const config = {
+      credits: {
+        enabled: false,
       },
-      temperature: {
-        alias: '体温',
+      chart: {
+        type: 'column',
       },
+      title: {
+        text: '',
+      },
+      xAxis: {
+        title: {
+          text: '时间',
+        },
+        categories: datetime,
+      },
+      yAxis: [
+        {
+          title: {
+            text: '体温',
+          },
+        },
+      ],
+      series: [
+        {
+          name: '体温',
+          type: 'spline',
+          pointStart: 0,
+          color: '#f29b70',
+          zIndex: 3,
+          data: temperature,
+        },
+      ],
     };
+
     return (
       <div>
         <select onClick={this.select} ref={e => this.dataselect = e}>
@@ -83,36 +110,7 @@ class LineChart extends React.Component {
           <option value="hour">最近12小时</option>
           <option value="day">最近1天</option>
         </select>
-        <Chart height={400} data={this.state.data} scale={cols} forceFit>
-          <Axis
-            name="datetime"
-            title={null}
-            tickLine={null}
-            line={{
-              stroke: '#E6E6E6',
-            }}
-          />
-          <Axis
-            name="temperature"
-            line={false}
-            tickLine={null}
-            grid={null}
-            title={null}
-          />
-          <Tooltip />
-          <Geom
-            type="line"
-            position="datetime*temperature"
-            size={1}
-            color="l (270) 0:rgba(255, 146, 255, 1) .5:rgba(100, 268, 255, 1) 1:rgba(215, 0, 255, 1)"
-            shape="smooth"
-            style={{
-              shadowColor: 'l (270) 0:rgba(21, 146, 255, 0)',
-              shadowBlur: 60,
-              shadowOffsetY: 6,
-            }}
-          />
-        </Chart>
+        <ReactHighcharts config={config} />
         <CustomTable value={this.state.data} />
       </div>
     );

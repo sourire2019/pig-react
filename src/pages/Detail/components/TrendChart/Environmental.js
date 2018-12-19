@@ -12,6 +12,8 @@ import Operation from '../../../../api/api';
 import EnvironmentalTable from './EnvironmentalTable';
 import './main.css';
 
+const ReactHighcharts = require('react-highcharts');
+
 const { showEnvironmentalMin, showEnvironmentalHour, showEnvironmentalDay } = Operation;
 
 class Environmental extends React.Component {
@@ -84,6 +86,68 @@ class Environmental extends React.Component {
         range: [0, 1],
       },
     };
+
+    const datetime = [],
+      humidity = [],
+      CO2 = [],
+      temperature = [];
+    const data = this.state.data;
+    for (let i = 0; i < this.state.data.length; i++) {
+      datetime.push(data[i].datetime);
+      temperature.push(parseFloat(data[i].temperature));
+      humidity.push(parseFloat(data[i].humidity));
+      CO2.push(parseFloat(data[i].CO2));
+    }
+    const config = {
+      credits: {
+        enabled: false,
+      },
+      chart: {
+        type: 'column',
+      },
+      title: {
+        text: '',
+      },
+      xAxis: {
+        title: {
+          text: '时间',
+        },
+        categories: datetime,
+      },
+      yAxis: [
+        {
+          title: {
+            text: '值',
+          },
+        },
+      ],
+      series: [
+        {
+          name: '温度',
+          type: 'spline',
+          pointStart: 0,
+          color: '#f29b70',
+          zIndex: 3,
+          data: temperature,
+        },
+        {
+          name: '湿度',
+          type: 'spline',
+          pointStart: 0,
+          color: '#f1fc70',
+          zIndex: 3,
+          data: humidity,
+        },
+        {
+          name: '二氧化碳',
+          type: 'spline',
+          pointStart: 0,
+          color: '#f26b70',
+          zIndex: 3,
+          data: CO2,
+        },
+      ],
+    };
     return (
       <div>
         <div style={{ overflow: 'hidden' }}>
@@ -98,39 +162,7 @@ class Environmental extends React.Component {
             </select>
           </div>
         </div>
-        <Chart height={400} data={dv} scale={cols} forceFit style={{ marginLeft: '-20px' }}>
-          <Legend />
-          <Axis name="datetime" />
-          <Axis
-            name="temperature"
-            // label={{
-            //   formatter: val => `${val}°C`,
-            // }}
-          />
-          <Tooltip
-            crosshairs={{
-              type: 'y',
-            }}
-          />
-          <Geom
-            type="line"
-            position="datetime*temperature"
-            size={2}
-            color="city"
-            shape="smooth"
-          />
-          <Geom
-            type="point"
-            position="datetime*temperature"
-            size={4}
-            shape="circle"
-            color="city"
-            style={{
-              stroke: '#fff',
-              lineWidth: 1,
-            }}
-          />
-        </Chart>
+        <ReactHighcharts config={config} />
         <EnvironmentalTable value={this.state.data} />
       </div>
     );

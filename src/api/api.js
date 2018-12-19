@@ -1,58 +1,50 @@
 import cookie from 'react-cookies';
 import { get, post } from './request.js';
-import axios from 'axios'
-
-// const login = (value) => {
-//   return post('url', {
-//     value,
-//   });
-// };
 
 const displaypig = () => {
-  return get('http://172.16.1.205:8080/getAllPig').then(res =>{
-    console.log(res)
-  })
+  return get('http://172.16.1.167:8080/getAllPig').then((res) => {
+    return res;
+  });
 };
 
 const addPig = (value) => {
-  return axios.post('http://172.16.1.205:8080/addpig', {
+  return post('http://172.16.1.167:8080/addpig', {
     data: value,
   });
 };
 
 const checkSelect = () => {
-  return get('http://172.16.1.205:8080/getAllPig');
+  return get('http://172.16.1.167:8080/getAllPig');
 };
-//显示猪的详情
+// 显示猪的详情
 const showDetail = (id) => {
-  return get(`http://172.16.1.205:8080/getPigInfo/${id}`)
+  return get(`http://172.16.1.167:8080/getPigInfo/${id}`);
 };
-//显示健康信息
-const showHealthMin1 = (id) => {
-  return get(`http://172.16.1.205:8080/getPigHealthInfo/${id}`).then(resp => {
-    console.log(resp);
-    return resp;
-  });
-};
+// 显示健康信息
+// const showHealthMin = (id) => {
+//   return get(`http://172.16.1.167:8080/getPigHealthInfo/${id}`).then((resp) => {
+//     return resp;
+//   });
+// };
 
 const showHealthHour = (id) => {
-  return get(`http://172.16.1.205:8080/getPigHealthInfo/${id}`);
+  return get(`http://172.16.1.167:8080/getPigHealthInfo/${id}`);
 };
 
 const showHealthDay = (id) => {
-  return get(`http://172.16.1.205:8080/getPigHealthInfo/${id}`);
+  return get(`http://172.16.1.167:8080/getPigHealthInfo/${id}`);
 };
 
 const showpiglist = (id) => {
-  return get(`http://172.16.1.205:8080/getPigList/${id}`);
-}
-//显示猪舍信息
+  return get(`http://172.16.1.167:8080/getPigList/${id}`);
+};
+// 显示猪舍信息
 // const pigsty = () => {
 //   return get('url');
 // };
 
 // const showEnvironmentalMin = (id) => {
-//   return get(`http://172.16.1.205:8080/getPigHouseEnv/${id}`).then(Response =>{
+//   return get(`http://172.16.1.167:8080/getPigHouseEnv/${id}`).then(Response =>{
 //     console.log(Response)
 //   })
 // };
@@ -111,236 +103,167 @@ const login = (value) => {
 // };
 
 const showHealthMin = (value) => {
-  // console.log(value);
-  const result = [
+  let result = [
     {
-      datetime: '00:00',
-      temperature: Math.floor((Math.random() * (999)) + 1),
+      "id": "2310107484439ghty",
+      "temperature": "26.9",
+      "datetime": "2018/12/18 20:23"
     },
     {
-      datetime: '00:01',
-      temperature: Math.floor((Math.random() * (999)) + 1),
+      "id": "2310107484439tr",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
     },
     {
-      datetime: '00:02',
-      temperature: Math.floor((Math.random() * (999)) + 1),
+      "id": "2310107484439tg",
+      "temperature": "26.9",
+      "datetime": "2018/12/18 20:24"
     },
-    // {
-    //   datetime: '00:03',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:04',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:05',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:06',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:07',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:08',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:09',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:10',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:11',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:12',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:13',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:14',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:15',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:16',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:17',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:18',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:19',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:20',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:21',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:22',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:23',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:24',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:25',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:26',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:27',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:28',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:29',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:30',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:31',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:32',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:33',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:34',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:35',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:36',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:37',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:38',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:39',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:40',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:41',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:42',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:43',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:44',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:45',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:46',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:47',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:48',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:49',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:50',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:51',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:52',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:53',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:54',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:55',
-    //   count: Math.floor((Math.random() * (999)) + 1) },
-    // {
-    //   datetime: '00:56',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:57',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:58',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:59',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
-    // {
-    //   datetime: '00:60',
-    //   count: Math.floor((Math.random() * (999)) + 1),
-    // },
+    {
+      "id": "2310107484439trgh",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439vbg",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439fre",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439d",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439a",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439341",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443913347",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443913324",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439563",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "23101074844390987",
+      "temperature": "26.8",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "23101074844393456",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "2310107484439314",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443912323",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443934",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443989",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443956",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:24"
+    },
+    {
+      "id": "231010748443923",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "23101074124439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310100484439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310107784439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2910107484439",
+      "temperature": "",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2010107484439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "1310107484439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2320107484439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310117484439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310102484439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310107444439",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310107484239",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    },
+    {
+      "id": "2310107484419",
+      "temperature": "26.7",
+      "datetime": "2018/12/18 20:25"
+    }
   ];
   return result;
 };
@@ -537,360 +460,6 @@ const showEnvironmentalMin = (id) => {
       temperature: Math.floor((Math.random() * 999) + 1),
       humidity: Math.floor((Math.random() * 999) + 1),
     },
-    {
-      datetime: '0:02',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:03',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:04',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:05',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:06',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:07',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:08',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:09',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:10',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:11',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:12',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:13',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:14',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:15',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:16',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:17',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:18',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:19',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:20',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:21',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:22',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:23',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:24',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:25',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:26',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:27',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:28',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:29',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:30',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:31',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:32',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:33',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:34',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:35',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:36',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:37',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:38',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:39',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:40',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:41',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:42',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:43',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:44',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:45',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:46',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:47',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:48',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:49',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:50',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:51',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:52',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:53',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:54',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:55',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:56',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:57',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:58',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:59',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '0:60',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
   ];
   return result;
 };
@@ -910,60 +479,6 @@ const showEnvironmentalHour = (id) => {
     },
     {
       datetime: '3:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '4:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '5:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '6:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '7:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '8:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '9:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '10:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '11:00',
-      CO2: Math.floor((Math.random() * 999) + 1),
-      temperature: Math.floor((Math.random() * 999) + 1),
-      humidity: Math.floor((Math.random() * 999) + 1),
-    },
-    {
-      datetime: '12:00',
       CO2: Math.floor((Math.random() * 999) + 1),
       temperature: Math.floor((Math.random() * 999) + 1),
       humidity: Math.floor((Math.random() * 999) + 1),
@@ -1133,6 +648,5 @@ export default {
   showEnvironmentalMin,
   showEnvironmentalHour,
   showEnvironmentalDay,
-  showHealthMin1,
-  showpiglist
+  showpiglist,
 };

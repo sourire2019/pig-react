@@ -40,7 +40,7 @@ const asideMenuConfig = [
   {
     name: '猪场管理',
     path: '/Piggery',
-    icon: 'search',
+    icon: 'menu',
     children: [
       { name: '猪舍管理', path: '/Piggery/pigsty' },
     ],

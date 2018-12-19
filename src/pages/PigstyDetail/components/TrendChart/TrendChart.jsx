@@ -4,7 +4,8 @@ import Boar from './Boar';
 import Sows from './Sows';
 import Environmental from '../../../Detail/components/TrendChart/Environmental';
 import Operations from '../../../../api/api';
-const {showpiglist} = Operations;
+
+const { showpiglist } = Operations;
 
 export default class TrendChart extends Component {
   static displayName = 'TrendChart';
@@ -14,16 +15,16 @@ export default class TrendChart extends Component {
     super(props);
     this.state = {
       id: window.location.hash.split('=')[1] || '0',
-      value : undefined,
-      show:'',
+      value: undefined,
+      show: '',
     };
     this.changetab = this.changetab.bind(this);
   }
   componentWillMount = async () => {
-    let result = await showpiglist(this.state.id);
+    const result = await showpiglist(this.state.id);
     this.setState({
-      value : result
-    })
+      value: result,
+    });
   };
 
   clearColor = () => {
@@ -44,7 +45,7 @@ export default class TrendChart extends Component {
         this.Boar.style.fontWeight = 'bolder',
         this.Boar.style.color = 'black',
         this.setState({
-          show: <Boar value = {this.state.value }/>,
+          show: <Boar value={this.state.value} />,
         })
       ); break;
       case 1: (
@@ -75,14 +76,14 @@ export default class TrendChart extends Component {
   render() {
     return (
       <IceContainer style={styles.container}>
-        <div className="t1" style={{ marginTop: '40px' }} id="daohang2">
+        <div className="t1" style={{ marginTop: '40px', marginBottom: '20px' }} id="daohang2">
           <a onClick={() => { this.changetab(0); }}><span className="t2" style={{ background: '#efefef', fontWeight: 'bolder' }} ref={el => this.Boar = el} >公猪列表</span></a>
           {/* <a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.Sows = el}>母猪列表</span></a> */}
           <a onClick={() => { this.changetab(2); }}><span className="t2" ref={el => this.environmental = el}>环境信息</span></a>
           {/* <a onClick={() => { this.changetab(3); }}><span className="t2" ref={el => this.callback = el}>返回上一层</span></a> */}
         </div>
         {
-          this.state.show === '' ? (<Boar value = {this.state.value} />) : (this.state.show)
+          this.state.show === '' ? (<Boar value={this.state.value} />) : (this.state.show)
         }
       </IceContainer>
     );

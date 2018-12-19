@@ -99,7 +99,7 @@ export default class TrendChart extends Component {
   render() {
     return (
       <IceContainer style={styles.container}>
-        <div className="t1" style={{ marginTop: '40px' }} id="daohang2">
+        <div className="t1" style={{ marginTop: '40px', marginBottom: '10px' }} id="daohang2">
           <a onClick={() => { this.changetab(0); }}><span className="t2" style={{ background: '#efefef', fontWeight: 'bolder' }} ref={el => this.show = el} >基本信息</span></a>
           <a onClick={() => { this.changetab(1); }}><span className="t2" ref={el => this.flow = el}>健康信息</span></a>
           <a onClick={() => { this.changetab(2); }}><span className="t2" ref={el => this.environmental = el}>环境信息</span></a>

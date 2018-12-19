@@ -71,7 +71,11 @@ class LineChart extends React.Component {
 
     return (
       <div>
-        <div>最近5分钟</div>
+        <div style={{ marginBottom: '20px', overflow: 'hidden' }}>
+          <div style={{ float: 'left', marginLeft: '10px' }}>耳号： {this.props.id}</div>
+          <div style={{ float: 'right', marginRight: '10px' }}>最近5分钟</div>
+        </div>
+
         <ReactHighcharts config={config} />
         <CustomTable value={this.state.data} />
       </div>

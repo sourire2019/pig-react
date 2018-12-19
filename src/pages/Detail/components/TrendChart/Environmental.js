@@ -91,11 +91,11 @@ class Environmental extends React.Component {
     };
     return (
       <div>
-        <div style={{ overflow: 'hidden' }}>
-          <div style={{ float: 'left' }}>
+        <div style={{ overflow: 'hidden', marginBottom: '20px' }}>
+          <div style={{ float: 'left', marginLeft: '10px' }}>
             <strong>猪舍编号:</strong><span>{this.props.pigstyId}</span>
           </div>
-          <div style={{ float: 'right' }}>
+          <div style={{ float: 'right', marginRight: '10px' }}>
             最近5分钟
           </div>
 

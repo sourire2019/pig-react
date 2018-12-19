@@ -14,7 +14,7 @@ export default class Boar extends Component {
     };
   }
 
- 
+
   componentWillReceiveProps(nextProps) {
     this.setState({
      dataSource : nextProps.value
@@ -35,7 +35,7 @@ export default class Boar extends Component {
           <Table.Column width={100} title="本周配种" dataIndex="matingWeek" />
           <Table.Column width={100} title="目前状态" dataIndex="status" cell={row => row?(row) : ("正常")}/>
           <Table.Column width={100} title="栋栏" dataIndex="column" />
-          <Table.Column width={100} title="操作" dataIndex="operation" />
+          {/*<Table.Column width={100} title="操作" dataIndex="operation" />*/}
           <Table.Column width={100} title="备注" dataIndex="remarks" />
         </Table>
       </div>

@@ -45,9 +45,12 @@ export default class TopActiveChart extends Component {
   }
   componentWillMount = async () => {
     const result = await displaypig();
-    this.setState({
-      dataSource: result,
-    });
+    const athis = this;
+    if (result != null) {
+      athis.setState({
+        dataSource: result,
+      });
+    }
   }
   renderProduct = (value, index, record) => {
     return (

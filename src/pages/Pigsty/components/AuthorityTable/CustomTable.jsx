@@ -16,9 +16,12 @@ export default class Home extends Component {
 
   componentWillMount = async () => {
     const result = await pigsty();
-    this.setState({
-      dataSource: result,
-    });
+    const athis = this;
+    if (result != null) {
+      athis.setState({
+        dataSource: result,
+      });
+    }
   }
   showpigsty = (index) => {
     const id = this.state.dataSource[index].pigstyId.toString();

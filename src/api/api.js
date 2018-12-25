@@ -52,7 +52,6 @@ const addPigsty = (value) => {
 
 const pigstylist = () => {
   return get('http://172.16.1.167:8080/pigHouseIdList').then((resp) => {
-    console.log(resp);
     return resp;
   });
 };

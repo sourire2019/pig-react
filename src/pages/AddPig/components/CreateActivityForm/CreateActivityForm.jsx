@@ -137,6 +137,17 @@ export default class CreateActivityForm extends Component {
               </Row>
               <Row style={styles.formItem}>
                 <Col xxs="6" s="2" l="2" style={styles.formLabel}>
+                  猪舍号：
+                </Col>
+                <Col s="12" l="10">
+                  <select ref={e => this.dataselect = e}>
+                    {this.operation()}
+                  </select>
+                  <IceFormError name="pigstyId" />
+                </Col>
+              </Row>
+              <Row style={styles.formItem}>
+                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
                   栋栏：
                 </Col>
                 <Col s="12" l="10">
@@ -148,17 +159,6 @@ export default class CreateActivityForm extends Component {
                     <Input style={{ width: '100%' }} />
                   </IceFormBinder>
                   <IceFormError name="column" />
-                </Col>
-              </Row>
-              <Row style={styles.formItem}>
-                <Col xxs="6" s="2" l="2" style={styles.formLabel}>
-                  猪舍号：
-                </Col>
-                <Col s="12" l="10">
-                  <select ref={e => this.dataselect = e}>
-                    {this.operation()}
-                  </select>
-                  <IceFormError name="pigstyId" />
                 </Col>
               </Row>
               <Row style={styles.formItem}>
